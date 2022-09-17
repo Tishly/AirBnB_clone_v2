@@ -19,8 +19,6 @@ class FileStorage:
                 cls_dct[key] = self.objects[key]
         return cls_dct
 
-        return FileStorage.__objects
-
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
