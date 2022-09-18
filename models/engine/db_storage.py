@@ -62,21 +62,20 @@ class DBStorage:
             Dictinary of queried classes in
             the format <class name>.<obj id> = obj.
         """
-        dic = {}
+        dic = dict()
         # queries the class object passed as an argument
         if cls:
             objs = self.__session.query(cls).all()
             for obj in objs:
                 dic[cls.__name__ + '.' + obj.id] = obj
-                return dic
+            return dic
 
         # queries all class objects one after the other
-        else:
-            for cls_name in self.classes:
-                objs = self.__session.query(cls).all()
-                for obj in objs:
-                    dic[cls_name.__name__ + '.' + obj.id] = obj
-            return dic
+        for cls_name in self.classes:
+            objs = self.__session.query(cls_name).all()
+            for obj in objs:
+                dic[cls_name.__name__ + '.' + obj.id] = obj
+        return dic
 
     def new(self, obj):
         """Adds the object to the current database session
