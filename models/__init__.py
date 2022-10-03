@@ -14,8 +14,6 @@ from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.user import User
 from models.state import State
-from models.engine.file_storage import FileStorage
-from models.engine.db_storage import DBStorage
 
 
 if getenv('HBNB_TYPE_STORAGE') == "db":
